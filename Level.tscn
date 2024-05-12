@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bj46re1q117nb"]
+[gd_scene load_steps=41 format=3 uid="uid://bj46re1q117nb"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_gx0a2"]
 [ext_resource type="Texture2D" uid="uid://ckb4jr8ev7iyx" path="res://GGWalkAnimation/Idle/GGIdle0000.png" id="2_2yg06"]
@@ -35,6 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://rjuq3atd0joj" path="res://GGWalkAnimation/R/GGWalkRight0006.png" id="32_sewls"]
 [ext_resource type="Texture2D" uid="uid://qbnrqn6xqjpy" path="res://GGWalkAnimation/R/GGWalkRight0007.png" id="33_s4rew"]
 [ext_resource type="Texture2D" uid="uid://dmsjl0dt2oij0" path="res://GGWalkAnimation/R/GGWalkRight0008.png" id="34_ws6rj"]
+[ext_resource type="Texture2D" uid="uid://bhu46w2nxxdod" path="res://Block.png" id="36_omx68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ly8o"]
+size = Vector2(129, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t116i"]
+size = Vector2(256, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lcayr"]
 animations = [{
@@ -164,8 +171,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8cy4"]
-radius = 34.0
-height = 198.0
+radius = 31.0
+height = 62.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_gx0a2")
@@ -177,17 +184,52 @@ offset_right = 1145.0
 offset_bottom = 644.0
 text = "Exit"
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1080.5, 627.25)
+shape = SubResource("RectangleShape2D_7ly8o")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(128, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(128, 32)
+shape = SubResource("RectangleShape2D_t116i")
+debug_color = Color(0.921569, 0.8, 0.87451, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(128.5, 32)
+scale = Vector2(2.57, 0.64)
+texture = ExtResource("36_omx68")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(127, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(128, 32)
+shape = SubResource("RectangleShape2D_t116i")
+debug_color = Color(0.921569, 0.8, 0.87451, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+position = Vector2(128.5, 32)
+scale = Vector2(2.57, 0.64)
+texture = ExtResource("36_omx68")
+
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(534, 173)
 motion_mode = 1
 script = ExtResource("2_7qiaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(10.5, 19)
+scale = Vector2(0.645, 0.65)
 sprite_frames = SubResource("SpriteFrames_lcayr")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(10, 51)
 shape = SubResource("CapsuleShape2D_n8cy4")
 debug_color = Color(0.760784, 0.258824, 0.913725, 0.419608)
 
