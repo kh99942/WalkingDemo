@@ -1,3 +1,5 @@
+#Beware! Super cool code bellow!
+
 class_name Player
 extends CharacterBody2D
 
